@@ -6,3 +6,6 @@ npm install
 
 ## 2 (opsional)
 cp .env.example .env
+
+### 3
+Have Fun!
