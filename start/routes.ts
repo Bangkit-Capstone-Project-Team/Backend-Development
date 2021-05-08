@@ -23,3 +23,17 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async () => {
   return { hello: 'world' }
 })
+
+Route.group(()=> {
+
+  Route.group(()=>{
+
+    Route.get('/discovery', 'BatiksController.discovery').as('batik.discovery')
+
+    Route.get('/:id', 'BatiksController.show').as('batik.id')
+
+    Route.post('/search', 'BatiksController.search').as('batik.search')
+
+  }).prefix('/batik')
+
+}).prefix('/api')
