@@ -42,7 +42,9 @@ Route.group(()=> {
   // User
   Route.post('/login', async () => { return {message: "login"} } ).as('auth.login')
 
-  Route.post('/register', async () => { return {message: "register"} } ).as('auth.register')
+  Route.post('/register', 'AuthController.register').as('auth.register')
+
+  Route.post('/logout', async () => { return {message: "logout"} }).as('auth.logout')
 
   // HealthCheck
   Route.get('/health', async ({response}) => {
