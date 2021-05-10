@@ -19,6 +19,8 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
+
 
 Route.get('/', async () => {
   return { hello: 'world' }
@@ -26,6 +28,7 @@ Route.get('/', async () => {
 
 Route.group(()=> {
 
+  // Batik
   Route.group(()=>{
 
     Route.get('/discovery', 'BatiksController.discovery').as('batik.discovery')
@@ -35,5 +38,17 @@ Route.group(()=> {
     Route.post('/search', 'BatiksController.search').as('batik.search')
 
   }).prefix('/batik')
+
+  // User
+  Route.post('/login', async () => { return {message: "login"} } ).as('auth.login')
+
+  Route.post('/register', async () => { return {message: "register"} } ).as('auth.register')
+
+  // HealthCheck
+  Route.get('/health', async ({response}) => {
+    const report = await HealthCheck.getReport()
+
+    return report.healthy ? response.ok(report) : response.badRequest(report)
+  }).as('health')
 
 }).prefix('/api')
