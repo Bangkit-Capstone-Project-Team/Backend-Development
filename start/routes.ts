@@ -47,7 +47,7 @@ Route.group(()=> {
   Route.post('/logout', 'AuthController.logout').as('auth.logout')
 
   //Quiz
-  Route.resource('/quiz', 'QuizzesController').apiOnly()
+  Route.resource('/quiz', 'QuizzesController').apiOnly().middleware({'*': 'auth'})
 
   // HealthCheck
   Route.get('/health', async ({response}) => {
