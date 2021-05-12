@@ -17,12 +17,17 @@ export default class BatiksController {
 
     }
 
-    public async show({response}: HttpContextContract){
+    public async show({params, response}: HttpContextContract){
+
+        const id = params.id
 
         const result =  await axios.get('http://batikita.herokuapp.com/index.php/batik/all')
-        console.log(result.data);
+
+        let data = result.data.hasil.filter(element => element.id == id)
+        data = data[0]
         
-        return response.json({message: "/:id"}) 
+        return response.status(200).json({message: "Show Success", data: data})
+         
     }
 
     public async search({request, response}: HttpContextContract){

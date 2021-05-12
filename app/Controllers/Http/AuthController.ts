@@ -9,13 +9,16 @@ export default class AuthController {
         const password = request.input('password')
 
         try {
-            const token = await auth.use('api').attempt(email, password)
-            return response.status(200).json({message: "Login Success! ", token })
-        } catch (error) {
-            return response.badRequest('Invalid credentials')
-        }
 
-        
+            const token = await auth.use('api').attempt(email, password)
+
+            return response.status(200).json({message: "Login Success! ", token: token })
+
+        } catch (error) {
+
+            return response.badRequest('Invalid credentials')
+
+        }
     }
 
     public async register({request, response}: HttpContextContract){
@@ -29,7 +32,7 @@ export default class AuthController {
             try {
 
                 const user = await User.create({name, email, password})
-                
+
                 return response.status(200).json({message: "Register Success!", user: user})
 
             } catch (error) {
@@ -41,6 +44,16 @@ export default class AuthController {
     }
 
     public async logout({auth, response}: HttpContextContract){
-        await auth.use('api').logout()
+        try {
+
+            await auth.use('api').logout()
+
+            return response.json({message: "Is Logged Out"})
+
+        } catch (error) {
+
+            return response.json({message: "Logged Out Failed", error})
+        }
+
     }
 }

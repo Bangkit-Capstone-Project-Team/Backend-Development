@@ -37,20 +37,25 @@ Route.group(()=> {
 
     Route.post('/search', 'BatiksController.search').as('batik.search')
 
-  }).prefix('/batik')
+  }).prefix('/batik').middleware('auth')
 
   // User
-  Route.post('/login', async () => { return {message: "login"} } ).as('auth.login')
+  Route.post('/login', 'AuthController.login').as('auth.login')
 
   Route.post('/register', 'AuthController.register').as('auth.register')
 
-  Route.post('/logout', async () => { return {message: "logout"} }).as('auth.logout')
+  Route.post('/logout', 'AuthController.logout').as('auth.logout')
+
+  //Quiz
+  Route.resource('/quiz', 'QuizzesController').apiOnly()
 
   // HealthCheck
   Route.get('/health', async ({response}) => {
-    const report = await HealthCheck.getReport()
 
+    const report = await HealthCheck.getReport()
+    
     return report.healthy ? response.ok(report) : response.badRequest(report)
+
   }).as('health')
 
 }).prefix('/api')
