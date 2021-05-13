@@ -5,6 +5,7 @@ const axios = require('axios');
 
 
 export default class BatiksController {
+    
     public async discovery({response}: HttpContextContract){
         await axios.get('http://batikita.herokuapp.com/index.php/batik/all')
         .then((result) => {

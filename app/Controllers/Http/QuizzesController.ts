@@ -3,6 +3,9 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 // Model
 import Quiz from 'App/Models/Quiz'
 
+// Validator
+import QuizValidator from 'App/Validators/QuizValidator'
+
 export default class QuizzesController {
     public async index({response}: HttpContextContract){
 
@@ -22,13 +25,11 @@ export default class QuizzesController {
     public async store({request, response}: HttpContextContract){
         try {
 
-            const number_question = request.input('number_question');
-            const question = request.input('question');
-            const choice_a = request.input('choice_a');
-            const choice_b = request.input('choice_b');
-            const choice_c = request.input('choice_c');
-            const choice_d = request.input('choice_d');
-            const answer = request.input('answer');
+            const data = await request.validate(QuizValidator)
+
+            console.log(data);
+
+            const { number_question, question, choice_a, choice_b, choice_c, choice_d, answer } = data
 
             const quiz = await Quiz.create({
                 numberQuestion: number_question,
@@ -62,13 +63,9 @@ export default class QuizzesController {
 
         const quiz = await Quiz.findOrFail(id)
 
-        const number_question = request.input('number_question');
-        const question = request.input('question');
-        const choice_a = request.input('choice_a');
-        const choice_b = request.input('choice_b');
-        const choice_c = request.input('choice_c');
-        const choice_d = request.input('choice_d');
-        const answer = request.input('answer');
+        const data = await request.validate(QuizValidator)
+
+        const { number_question, question, choice_a, choice_b, choice_c, choice_d, answer } = data
 
         if (number_question){
             quiz.numberQuestion = number_question;

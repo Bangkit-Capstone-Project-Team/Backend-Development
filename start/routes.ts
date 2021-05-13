@@ -46,6 +46,8 @@ Route.group(()=> {
 
   Route.post('/logout', 'AuthController.logout').as('auth.logout')
 
+  Route.get('/profile', 'AuthController.profile').as('auth.profile')
+
   //Quiz
   Route.resource('/quiz', 'QuizzesController').apiOnly().middleware({'*': 'auth'})
 

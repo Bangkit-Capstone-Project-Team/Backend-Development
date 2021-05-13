@@ -3,29 +3,28 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 // Model
 import User from 'App/Models/User'
 
+// Validator
+import AuthLoginValidator from 'App/Validators/AuthLoginValidator'
+import AuthRegisterValidator from 'App/Validators/AuthRegisterValidator'
+
 export default class AuthController {
     public async login({auth, request, response}: HttpContextContract){
-        const email = request.input('email')
-        const password = request.input('password')
 
-        try {
+        const data = await request.validate(AuthLoginValidator)
 
-            const token = await auth.use('api').attempt(email, password)
+        const {email , password} = data
+        
+        const token = await auth.use('api').attempt(email, password)
 
-            return response.status(200).json({message: "Login Success! ", token: token })
-
-        } catch (error) {
-
-            return response.badRequest('Invalid credentials')
-
-        }
+        return response.status(200).json({message: "Login Success! ", token: token })
+      
     }
 
     public async register({request, response}: HttpContextContract){
-        const name = request.input('name')
-        const email = request.input('email')
-        const password  = request.input('password')
-        const repassword = request.input('repassword')
+
+        const data = await request.validate(AuthRegisterValidator)
+
+        const { name, email, password, repassword } = data;
 
         if (repassword == password){
 
@@ -55,5 +54,9 @@ export default class AuthController {
             return response.json({message: "Logged Out Failed", error})
         }
 
+    }
+
+    public async profile(){
+        return {message: "Profile"}
     }
 }
