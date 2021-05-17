@@ -41,16 +41,10 @@ export default class AuthController {
     }
 
     public async logout({auth, response}: HttpContextContract){
-        try {
+       
+        await auth.use('api').logout()
 
-            await auth.use('api').logout()
-
-            return response.json({message: "Is Logged Out"})
-
-        } catch (error) {
-
-            return response.json({message: "Logged Out Failed", error})
-        }
+        return response.json({message: "Is Logged Out"})
 
     }
 
