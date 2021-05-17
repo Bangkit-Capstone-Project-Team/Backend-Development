@@ -14,7 +14,9 @@ export default class AuthController {
 
         const {email , password} = data
         
-        const token = await auth.use('api').attempt(email, password)
+        const token = await auth.use('api').attempt(email, password, {
+            expiresIn: '30days'
+        })
 
         return response.status(200).json({message: "Login Success! ", token: token })
       

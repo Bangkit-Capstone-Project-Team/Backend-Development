@@ -41,7 +41,7 @@ export default class QuizzesController {
                 answer: answer,
             })
 
-            return response.status(200).json({message: "Storing Success"})
+            return response.status(200).json({message: "Storing Success", data: quiz})
 
         } catch (error) {
 
