@@ -37,7 +37,7 @@ Route.group(()=> {
 
     Route.post('/search', 'BatiksController.search').as('batik.search')
 
-  }).prefix('/batik').middleware('auth')
+  }).prefix('/batik')
 
   // User
   Route.post('/login', 'AuthController.login').as('auth.login')

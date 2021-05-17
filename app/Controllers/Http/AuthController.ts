@@ -28,19 +28,15 @@ export default class AuthController {
 
         const { name, email, password, repassword } = data;
 
-        if (repassword == password){
+        if (repassword === password){
 
-            try {
+            const user = await User.create({name, email, password})
 
-                const user = await User.create({name, email, password})
-
-                return response.status(200).json({message: "Register Success!", user: user})
-
-            } catch (error) {
-
-                return response.status(400).json({message: "Register Failed!", error})
-            }
+            return response.status(200).json({message: "Register Success!", user: user})
             
+        }else{
+
+            return response.status(200).json({message: "Register Failed", error: "The Passwords are not same"})
         }
     }
 
