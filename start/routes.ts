@@ -23,7 +23,7 @@ import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
 
 
 Route.get('/', async () => {
-  return { hello: 'world' }
+  return { message: 'Welcome to Gamastik' }
 })
 
 Route.group(()=> {
@@ -44,12 +44,23 @@ Route.group(()=> {
 
   Route.post('/register', 'AuthController.register').as('auth.register')
 
-  Route.post('/logout', 'AuthController.logout').as('auth.logout')
+  Route.post('/logout', 'AuthController.logout').as('auth.logout').middleware('auth')
 
-  Route.get('/profile', 'AuthController.profile').as('auth.profile')
+  Route.get('/profile/:id', 'AuthController.profile').as('auth.profile').middleware('auth')
 
-  //Quiz
+  Route.get('/id', 'AuthController.id').as('auth.id').middleware('auth')
+
+  // Quiz
   Route.resource('/quiz', 'QuizzesController').apiOnly().middleware({'*': 'auth'})
+
+  // Score
+  Route.group(()=>{
+
+    Route.get('/', 'ScoresController.index').as('score.index')
+
+    Route.post('/:id', 'ScoresController.insert').as('score.insert').middleware('auth')
+
+  }).prefix('/score')
 
   // HealthCheck
   Route.get('/health', async ({response}) => {

@@ -24,9 +24,12 @@ export default class AuthController {
 
     public async register({request, response}: HttpContextContract){
 
+        // User
         const data = await request.validate(AuthRegisterValidator)
 
         const { name, email, password, repassword } = data;
+
+        // Score
 
         if (repassword === password){
 
@@ -48,7 +51,24 @@ export default class AuthController {
 
     }
 
-    public async profile(){
-        return {message: "Profile"}
+    public async profile({auth, params, response}: HttpContextContract){
+
+        if (auth.user?.id === Number(params.id) ){
+
+            return response.status(200).json({message: "This Is Auth", data: auth.user, })
+
+        }else{
+
+            return response.status(400).json({message: "Sorry! It is not You"})
+
+        }
+        
+    }
+
+    public async id({auth, response}: HttpContextContract){
+
+        const id = auth.user?.id
+
+        return response.status(200).json({message: "Ssst!, Your ID is : " + id})
     }
 }
