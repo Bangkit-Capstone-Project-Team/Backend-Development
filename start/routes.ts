@@ -56,7 +56,7 @@ Route.group(()=> {
   // Score
   Route.group(()=>{
 
-    Route.get('/', 'ScoresController.index').as('score.index')
+    Route.get('/', 'ScoresController.index').as('score.index').middleware('auth')
 
     Route.post('/:id', 'ScoresController.insert').as('score.insert').middleware('auth')
 

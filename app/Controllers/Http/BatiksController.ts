@@ -5,6 +5,20 @@ const axios = require('axios');
 
 
 export default class BatiksController {
+
+/**
+  * @swagger
+  * /api/batik/discovery:
+  *   get:
+  *     tags:
+  *       - Batik
+  *     summary: API for Batik
+  *     responses:
+  *       200:
+  *         description: Get All Batik
+  *         example:
+  *           message: Hello Guess
+  */
     
     public async discovery({response}: HttpContextContract){
         await axios.get('http://batikita.herokuapp.com/index.php/batik/all')
@@ -18,6 +32,26 @@ export default class BatiksController {
 
     }
 
+/**
+  * @swagger
+  * /api/batik/{id}:
+  *   get:
+  *     tags:
+  *       - Batik
+  *     summary: API for Batik
+  *     parameters:
+  *       - name: id
+  *         description: ID of the batik
+  *         in: path
+  *         required: true
+  *         type: integer
+  *     responses:
+  *       200:
+  *         description: Get Batik
+  *         example:
+  *           message: Hello Guess
+  */
+
     public async show({params, response}: HttpContextContract){
 
         const id = params.id
@@ -30,6 +64,28 @@ export default class BatiksController {
         return response.status(200).json({message: "Show Success", data: data})
          
     }
+
+/**
+  * @swagger
+  * paths:
+  *   /api/batik/search:
+  *     post: 
+  *       tags:
+  *         - Batik
+  *       summary: API for Batik
+  *       requestBody:
+  *         required: true
+  *         content:
+  *           application/x-www-form-urlencoded:
+  *             schema:
+  *               type: object
+  *               properties:
+  *                 search:
+  *                   type: string
+  *       responses: 
+  *         '200':
+  *           description: Searched
+  */
 
     public async search({request, response}: HttpContextContract){
 

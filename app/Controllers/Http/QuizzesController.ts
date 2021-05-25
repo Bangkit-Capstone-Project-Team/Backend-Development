@@ -7,6 +7,23 @@ import Quiz from 'App/Models/Quiz'
 import QuizValidator from 'App/Validators/QuizValidator'
 
 export default class QuizzesController {
+
+/**
+  * @swagger
+  * /api/quiz:
+  *   get:
+  *     security:
+  *       - bearerAuth: []
+  *     tags:
+  *       - Quiz
+  *     summary: API for Quiz
+  *     responses:
+  *       200:
+  *         description: Get All Quiz
+  *         example:
+  *           message: Hello Guess
+  */
+
     public async index({response}: HttpContextContract){
 
         try {
@@ -21,6 +38,37 @@ export default class QuizzesController {
         }
         
     }
+
+/**
+  * @swagger
+  * /api/quiz:
+  *   post:
+  *     security:
+  *       - bearerAuth: []
+  *     tags:
+  *       - Quiz
+  *     summary: API for Quiz
+  *     requestBody:
+  *       required: true
+  *       content:
+  *         application/x-www-form-urlencoded:
+  *           schema:
+  *             type: object
+  *             properties:
+  *               name:
+  *                 type: string
+  *               email:
+  *                 type: string
+  *               password:
+  *                 type: string
+  *               repassword:
+  *                 type: string
+  *     responses:
+  *       200:
+  *         description: Get Batik
+  *         example:
+  *           message: Hello Guess
+  */
 
     public async store({request, response}: HttpContextContract){
         try {
@@ -50,6 +98,28 @@ export default class QuizzesController {
         }
     }
 
+/**
+  * @swagger
+  * /api/quiz/{id}:
+  *   get:
+  *     security:
+  *       - bearerAuth: []
+  *     tags:
+  *       - Quiz
+  *     summary: API for Quiz
+  *     parameters:
+  *       - name: id
+  *         description: ID of the batik
+  *         in: path
+  *         required: true
+  *         type: integer
+  *     responses:
+  *       200:
+  *         description: Get Batik
+  *         example:
+  *           message: Hello Guess
+  */
+
     public async show({params, response}: HttpContextContract){
         const id = params.id
 
@@ -57,6 +127,28 @@ export default class QuizzesController {
 
         return response.status(200).json({message: "Show Success", data: quiz})
     }
+
+/**
+  * @swagger
+  * /api/quiz/{id}:
+  *   put:
+  *     security:
+  *       - bearerAuth: []
+  *     tags:
+  *       - Quiz
+  *     summary: API for Quiz
+  *     parameters:
+  *       - name: id
+  *         description: ID of the batik
+  *         in: path
+  *         required: true
+  *         type: integer
+  *     responses:
+  *       200:
+  *         description: Get Batik
+  *         example:
+  *           message: Hello Guess
+  */
 
     public async update({request, params, response}: HttpContextContract){
         const id = params.id
@@ -99,6 +191,28 @@ export default class QuizzesController {
 
         return response.status(200).json({message: "Update Success", data: quiz})
     }
+
+/**
+  * @swagger
+  * /api/quiz/{id}:
+  *   delete:
+  *     security:
+  *       - bearerAuth: []
+  *     tags:
+  *       - Quiz
+  *     summary: API for Quiz
+  *     parameters:
+  *       - name: id
+  *         description: ID of the batik
+  *         in: path
+  *         required: true
+  *         type: integer
+  *     responses:
+  *       200:
+  *         description: Get Batik
+  *         example:
+  *           message: Hello Guess
+  */
 
     public async destroy({params, response}: HttpContextContract){
         const id = params.id
