@@ -55,17 +55,23 @@ export default class QuizzesController {
   *           schema:
   *             type: object
   *             properties:
-  *               name:
+  *               number_question:
+  *                 type: integer
+  *               question:
   *                 type: string
-  *               email:
+  *               choice_a:
   *                 type: string
-  *               password:
+  *               choice_b:
   *                 type: string
-  *               repassword:
+  *               choice_c:
+  *                 type: string
+  *               choice_d:
+  *                 type: string
+  *               answer:
   *                 type: string
   *     responses:
   *       200:
-  *         description: Get Batik
+  *         description: Input Quiz
   *         example:
   *           message: Hello Guess
   */
@@ -109,7 +115,7 @@ export default class QuizzesController {
   *     summary: API for Quiz
   *     parameters:
   *       - name: id
-  *         description: ID of the batik
+  *         description: ID of the Qestion
   *         in: path
   *         required: true
   *         type: integer
@@ -139,10 +145,31 @@ export default class QuizzesController {
   *     summary: API for Quiz
   *     parameters:
   *       - name: id
-  *         description: ID of the batik
+  *         description: ID of the Qestion
   *         in: path
   *         required: true
   *         type: integer
+  *     requestBody:
+  *         required: true
+  *         content:
+  *           application/x-www-form-urlencoded:
+  *             schema:
+  *               type: object
+  *               properties:
+  *                 number_question:
+  *                   type: integer
+  *                 question:
+  *                   type: string
+  *                 choice_a:
+  *                   type: string
+  *                 choice_b:
+  *                   type: string
+  *                 choice_c:
+  *                   type: string
+  *                 choice_d:
+  *                   type: string
+  *                 answer:
+  *                   type: string
   *     responses:
   *       200:
   *         description: Get Batik
@@ -203,7 +230,7 @@ export default class QuizzesController {
   *     summary: API for Quiz
   *     parameters:
   *       - name: id
-  *         description: ID of the batik
+  *         description: ID of the Qestion
   *         in: path
   *         required: true
   *         type: integer

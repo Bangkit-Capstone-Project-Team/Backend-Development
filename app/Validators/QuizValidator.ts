@@ -32,7 +32,7 @@ export default class QuizValidator {
 	choice_b : schema.string.optional(),
 	choice_c : schema.string.optional(),
 	choice_d : schema.string.optional(),
-	answer: schema.enum.optional(['A', 'B', 'C', 'D'])
+	answer: schema.enum.optional(['A', 'B', 'C', 'D', 'a', 'b', 'c', 'd'])
 	
   })
 

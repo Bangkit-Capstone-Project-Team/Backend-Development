@@ -14,15 +14,9 @@ export default class ScoresController {
   *     tags:
   *       - Score
   *     summary: API for Score
-  *     parameters:
-  *       - name: id
-  *         description: ID of the batik
-  *         in: path
-  *         required: true
-  *         type: integer
   *     responses:
   *       200:
-  *         description: Get Batik
+  *         description: Get All Scores
   *         example:
   *           message: Hello Guess
   */
@@ -47,13 +41,22 @@ export default class ScoresController {
   *     summary: API for Score
   *     parameters:
   *       - name: id
-  *         description: ID of the batik
+  *         description: ID of the score
   *         in: path
   *         required: true
   *         type: integer
+  *     requestBody:
+  *         required: true
+  *         content:
+  *           application/x-www-form-urlencoded:
+  *             schema:
+  *               type: object
+  *               properties:
+  *                 score:
+  *                   type: integer
   *     responses:
   *       200:
-  *         description: Get Batik
+  *         description: Storing score
   *         example:
   *           message: Hello Guess
   */
