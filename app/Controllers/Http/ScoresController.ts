@@ -66,7 +66,7 @@ export default class ScoresController {
 
             const data = await Score.updateOrCreate({userId: auth.user.id}, {score: score})
 
-            return {mesage: "store _ score", data: data}
+            return response.json({mesage: "store _ score", data: data}) 
 
         }
 
