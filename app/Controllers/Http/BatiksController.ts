@@ -102,6 +102,28 @@ export default class BatiksController {
 
     }
 
+/**
+  * @swagger
+  * paths:
+  *   /api/batik/filter/daerah:
+  *     post: 
+  *       tags:
+  *         - Batik
+  *       summary: API for Batik
+  *       requestBody:
+  *         required: true
+  *         content:
+  *           application/x-www-form-urlencoded:
+  *             schema:
+  *               type: object
+  *               properties:
+  *                 daerah:
+  *                   type: string
+  *       responses: 
+  *         '200':
+  *           description: Searched
+  */
+
     public async daerah({request, response}: HttpContextContract){
 
         const daerah = request.input('daerah')
