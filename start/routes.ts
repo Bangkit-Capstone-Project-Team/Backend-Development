@@ -39,6 +39,8 @@ Route.group(()=> {
 
     Route.post('/filter/daerah', 'BatiksController.daerah').as('batik.daerah')
 
+    Route.get('/list/daerah', 'BatiksController.list').as('batik.list')
+
   }).prefix('/batik')
 
   // User

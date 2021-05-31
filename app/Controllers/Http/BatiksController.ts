@@ -133,7 +133,7 @@ export default class BatiksController {
         let array = batik.data.hasil;
         const data = [] as any ;
 
-        array = array.filter( (element, index) => {
+        array = array.filter( (element) => {
 
             if (element.daerah_batik.toLowerCase() == daerah.toLowerCase()){
 
@@ -144,5 +144,41 @@ export default class BatiksController {
 
         return response.json({message: "Filter by daerah", data: data})
 
+    }
+
+/**
+  * @swagger
+  * paths:
+  *   /api/batik/list/daerah:
+  *     get: 
+  *       tags:
+  *         - Batik
+  *       summary: API for Batik
+  *       responses: 
+  *         '200':
+  *           description: Searched
+  */
+
+    public async list({response}:HttpContextContract){
+        
+        const batik = await axios.get('http://batikita.herokuapp.com/index.php/batik/all')
+
+        let array = batik.data.hasil;
+
+        let data = [] as any;
+
+        await array.map( (element) => {
+
+            data.push(element.daerah_batik)
+            
+        })
+
+        const unique = new Set(data)
+
+        data = [...unique]
+
+        console.log(data);
+        
+        return response.status(200).json({message: "This is list", data: data}) 
     }
 }
