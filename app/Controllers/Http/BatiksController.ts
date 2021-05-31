@@ -101,4 +101,26 @@ export default class BatiksController {
         });
 
     }
+
+    public async daerah({request, response}: HttpContextContract){
+
+        const daerah = request.input('daerah')
+
+        let batik = await axios.get('http://batikita.herokuapp.com/index.php/batik/all')
+
+        let array = batik.data.hasil;
+        const data = [] as any ;
+
+        array = array.filter( (element, index) => {
+
+            if (element.daerah_batik.toLowerCase() == daerah.toLowerCase()){
+
+                data.push(element)
+                
+            }
+        })
+
+        return response.json({message: "Filter by daerah", data: data})
+
+    }
 }
