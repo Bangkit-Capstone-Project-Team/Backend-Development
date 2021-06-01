@@ -67,6 +67,20 @@ Route.group(()=> {
   }).prefix('/score')
 
   // HealthCheck
+
+  /**
+  * @swagger
+  * paths:
+  *   /api/health:
+  *     get: 
+  *       tags:
+  *         - Health
+  *       summary: API for Health Check
+  *       responses: 
+  *         '200':
+  *           description: Searched
+  */
+
   Route.get('/health', async ({response}) => {
 
     const report = await HealthCheck.getReport()

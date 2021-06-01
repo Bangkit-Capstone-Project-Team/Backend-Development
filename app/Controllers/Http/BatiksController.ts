@@ -177,6 +177,15 @@ export default class BatiksController {
 
         data = [...unique]
 
+        // function shuffle
+        const  shuffle = (array) => {
+
+            array.sort(() => Math.random() - 0.5);
+
+        }
+
+        shuffle(data)
+
         console.log(data);
         
         return response.status(200).json({message: "This is list", data: data}) 
