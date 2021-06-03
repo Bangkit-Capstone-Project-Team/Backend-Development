@@ -1,16 +1,13 @@
 # capstone-B21-CAP0264
 
 
-#API
+#### API
 
-## 1
-npm install
-
-## 2 (opsional)
-cp .env.example .env
-
-### 3
-Have Fun!
+1. cd backend-development
+2. npm install
+3. (optional) cp .env.example .env
+4. node ace serve --watch
+5. have fun!
 
 #### How To Deploy at GCP using Cloud Run
 1. Upload images to google cloud using cloud sdk. make sure you have installed it first. read this documentation https://cloud.google.com/container-registry/docs/pushing-and-pulling
