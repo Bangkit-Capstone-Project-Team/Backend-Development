@@ -1,23 +1,26 @@
-# Node JS Backend Development
+# Backend Development
 
 #### Prerequisite
 
-* 'node:' '14.x.x'
-* 'npm:' '6.x.x'
+* `node:` `14.x.x`
+* `npm:` `6.x.x`
 
 
 #### How to run
 
-* 1. 'git clone https://github.com/Bangkit-Capstone-Project-Team/Backend-Development.git'
-* 2. 'cd backend-development'
-* 3. 'npm install'
-* 4. (optional based on your local env) 'cp .env.example .env'
-* 5. 'node ace serve --watch'
-* 6. Open your localhost based on port
+* `git clone https://github.com/Bangkit-Capstone-Project-Team/Backend-Development.git`
+* `cd backend-development`
+* `npm install`
+* (optional based on your local env) `cp .env.example .env`
+* `node ace serve --watch`
+* Open your localhost based on port
 
 #### Documentation
 * You can try it in here : https://capstone-b21-cap026.herokuapp.com/
 * Or check the documentation : https://capstone-b21-cap026.herokuapp.com/docs
+
+![image](https://user-images.githubusercontent.com/48268441/120738641-65a3fe80-c51a-11eb-9de6-5fd2260a25f4.png)
+
 
 #### How To Deploy at GCP using Cloud Run
 1. Upload images to google cloud using cloud sdk. make sure you have installed it first. read this documentation https://cloud.google.com/container-registry/docs/pushing-and-pulling
